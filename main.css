@@ -1,0 +1,31 @@
+ html, body, #mapDiv {
+        padding:0;
+        margin:0;
+        height:100%;
+      }
+	  #info {
+        top: 2px;
+        color: #444;
+        height: auto;
+        font-family: arial;
+        font-weight: bold;
+        left: 69px;
+        margin: 5px;
+        padding: 10px;
+        position: absolute;
+        width: 260px;
+        z-index: 40;
+        border: solid 1px #003300;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+	}
+	  #search {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 70px;
+        left: 74px;
+      }
+      #mapDiv {
+        position: relative;
+      }
