@@ -38,26 +38,33 @@
         top: 70px;
         left: 74px;
       }
-      #mapDiv {
+    #mapDiv {
         position: relative;
       }
+    #borderContainer {
+      width: 100%;
+      height: 100%;
+    }    
+
     </style>
 
     <script src="http://js.arcgis.com/3.14/"></script>
     <script>
+
       var map, dialog;
+
       require([
         "esri/map", "esri/layers/FeatureLayer", "esri/dijit/Search",
         "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", 
         "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
-        "esri/Color", "dojo/number", "dojo/dom-style", 
-        "dijit/TooltipDialog", "dijit/popup", "dojo/domReady!"
+        "esri/Color", "dojo/number", "dojo/parser", "dojo/dom-style", 
+        "dijit/TooltipDialog", "dijit/popup", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
       ], function(
         Map, FeatureLayer, Search,
         SimpleFillSymbol, SimpleLineSymbol,
         SimpleRenderer, Graphic, esriLang,
         Color, number, domStyle, 
-        TooltipDialog, dijitPopup
+        TooltipDialog, dijitPopup, 
       ) {
         map = new Map("mapDiv", {
           basemap: "gray",
@@ -149,9 +156,21 @@
 		s.startup();
 		
       });
+
+  
+
     </script>
   </head>
   <body class="tundra">
+  <div id="header" class="shadow" 
+           data-dojo-type="dijit/layout/ContentPane" 
+           data-dojo-props="region:'top'">
+
+        <span>This is the header section</span><br />
+        <span id="subheader" class="roundedCorners">sub header</span>     
+
+      </div>
+
     <div id="search"></div>
 	<div id="info">
       <div>Search an Ottawa address to find out about your neighbourhood.</div>
