@@ -183,11 +183,11 @@
 	 </div>
 	
   <div id="mapDiv" 
-        data-dojo-type="dijit.layout.ContentPane" 
+        data-dojo-type="dijit/layout/ContentPane" 
         data-dojo-props="region:'center'"></div>
   
   <div id="footer" class="roundedCorners" 
-           data-dojo-type="dijit.layout.ContentPane" 
+           data-dojo-type="dijit/layout/ContentPane" 
            data-dojo-props="region:'bottom'">
         this is the footer section
       </div>
