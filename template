@@ -50,6 +50,8 @@
     </style>
 
     <script src="http://js.arcgis.com/3.14/"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+    <script data-dojo-config="async: true, parseOnLoad: true" src="dojo/dojo.js" data-dojo-config="async: true"></script>
     <script>
 
       var map, dialog;
@@ -64,8 +66,8 @@
         Map, FeatureLayer, Search,
         SimpleFillSymbol, SimpleLineSymbol,
         SimpleRenderer, Graphic, esriLang,
-        Color, number, domStyle, 
-        TooltipDialog, dijitPopup, 
+        Color, number, parser, domStyle, 
+        TooltipDialog, dijitPopup, BorderContainer, ContentPane
       ) {
         map = new Map("mapDiv", {
           basemap: "gray",
@@ -158,8 +160,6 @@
 		
       });
 
-   dojo.ready(init);
-
     </script>
   </head>
   <body class="tundra">
@@ -189,7 +189,7 @@
         data-dojo-props="region:'center'">
         <div>Search an Ottawa address to find out about your neighbourhood.</div>
 	  </div>
-    
+
   </div>
   </body>
 </html>
