@@ -1,18 +1,23 @@
  
       var map, dialog;
+
       require([
         "esri/map", "esri/layers/FeatureLayer", "esri/dijit/Search",
         "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", 
         "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
         "esri/Color", "dojo/number", "dojo/dom-style", 
-        "dijit/TooltipDialog", "dijit/popup", "esri/dijit/LocateButton","dojo/domReady!"
+        "dijit/TooltipDialog", "dijit/popup", "esri/dijit/LocateButton", 
+        "dojo/parser","dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
       ], function(
         Map, FeatureLayer, Search,
         SimpleFillSymbol, SimpleLineSymbol,
         SimpleRenderer, Graphic, esriLang,
         Color, number, domStyle, 
-        TooltipDialog, dijitPopup, LocateButton
+        TooltipDialog, dijitPopup, LocateButton, parser
       ) {
+
+      parser.parse();
+
         map = new Map("mapDiv", {
           basemap: "gray",
           center: [-75.6919, 45.300],
@@ -31,6 +36,24 @@
             map: map
          }, "search");
 
+    //begin search experiment
+
+    s.on("select", showLocation)
+
+    function showLocation(evt) {
+      map.graphics.clear;
+      var locationPoint = evt.result.feature.geometry
+      var locationSymbol = new SimpleMarketSymbol().setStyle(
+        SimpleMarkerSymbold.STYLE_SQUARE).setColor(
+        new Color([255, 0, 0, 0.5])
+        );
+
+      var searchResult = new Graphic(locationPoint, locationSymbol);
+      map.graphics.add(searchResult);
+    }
+
+    //end experiment
+
     var geoLocate = new LocateButton({
         map: map
       }, "LocateButton");
@@ -42,7 +65,7 @@
             SimpleLineSymbol.STYLE_SOLID, 
             new Color([255,255,255,0.35]), 1
           ),
-          new Color([204,255,153,0.35])
+          new Color([102,204,255,0.35])
         );
         NeighbourhoodsLayer.setRenderer(new SimpleRenderer(symbol));
         map.addLayer(NeighbourhoodsLayer);
@@ -60,7 +83,7 @@
             SimpleLineSymbol.STYLE_SOLID, 
             new Color([255,255,255]), 3
           ), 
-          new Color([283,49,35,0.35])
+          new Color([283,49,35,1])
         );
         //close the dialog when the mouse leaves the highlight graphic
         map.on("load", function(){
