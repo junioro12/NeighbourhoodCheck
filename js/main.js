@@ -5,13 +5,13 @@
         "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", 
         "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
         "esri/Color", "dojo/number", "dojo/dom-style", 
-        "dijit/TooltipDialog", "dijit/popup", "dojo/domReady!"
+        "dijit/TooltipDialog", "dijit/popup", "esri/dijit/LocateButton","dojo/domReady!"
       ], function(
         Map, FeatureLayer, Search,
         SimpleFillSymbol, SimpleLineSymbol,
         SimpleRenderer, Graphic, esriLang,
         Color, number, domStyle, 
-        TooltipDialog, dijitPopup
+        TooltipDialog, dijitPopup, LocateButton
       ) {
         map = new Map("mapDiv", {
           basemap: "gray",
@@ -30,7 +30,11 @@
             showInfoWindowOnSelect: false,
             map: map
          }, "search");
-		
+
+    var geoLocate = new LocateButton({
+        map: map
+      }, "LocateButton");
+      
 		//var sources = s.get("sources"); 
         var symbol = new SimpleFillSymbol(
           SimpleFillSymbol.STYLE_SOLID, 
@@ -101,5 +105,5 @@
         }
 	
 		s.startup();
-		
+		geoLocate.startup();
       });
