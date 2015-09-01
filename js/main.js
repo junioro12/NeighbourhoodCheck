@@ -38,7 +38,7 @@
 
     //begin search experiment
 
-    s.on("select", showLocation)
+    s.on("select-result", showLocation)
 
     function showLocation(evt) {
       map.graphics.clear;
@@ -81,7 +81,7 @@
           SimpleFillSymbol.STYLE_SOLID, 
           new SimpleLineSymbol(
             SimpleLineSymbol.STYLE_SOLID, 
-            new Color([255,255,255]), 3
+            new Color([255,255,255,1]), 3
           ), 
           new Color([283,49,35,1])
         );
