@@ -38,19 +38,19 @@
 
     //begin search experiment
 
-    s.on("select-result", showLocation)
+    s.on("select-result", showLocation);
 
     function showLocation(evt) {
       map.graphics.clear;
-      var locationPoint = evt.result.feature.geometry
-      var locationSymbol = new SimpleMarketSymbol().setStyle(
-        SimpleMarkerSymbold.STYLE_SQUARE).setColor(
+      var locationPoint = evt.result.feature.geometry;
+      var locationSymbol = new SimpleMarkerSymbol().setStyle(
+        SimpleMarkerSymbol.STYLE_SQUARE).setColor(
         new Color([255, 0, 0, 0.5])
         );
 
       var searchResult = new Graphic(locationPoint, locationSymbol);
       map.graphics.add(searchResult);
-    }
+    };
 
     //end experiment
 
@@ -78,12 +78,12 @@
         dialog.startup();
         
         var highlightSymbol = new SimpleFillSymbol(
-          SimpleFillSymbol.STYLE_SOLID, 
+          SimpleFillSymbol.STYLE_NULL, 
           new SimpleLineSymbol(
             SimpleLineSymbol.STYLE_SOLID, 
-            new Color([255,255,255,1]), 3
+            new Color([255,255,255]), 3
           ), 
-          new Color([283,49,35,1])
+          // new Color([283,49,35,1])
         );
         //close the dialog when the mouse leaves the highlight graphic
         map.on("load", function(){
