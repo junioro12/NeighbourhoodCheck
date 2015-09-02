@@ -27,6 +27,7 @@
         
 		var NeighbourhoodsLayer = new FeatureLayer("http://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NBwithPC/FeatureServer/0", {
             outFields: ["*"]
+            styling: true,
          });
          
 		var s = new Search({
