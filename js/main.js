@@ -38,6 +38,7 @@
 
     //begin search experiment
 
+
     s.on("select-result", showLocation);
 
     function showLocation(evt) {
