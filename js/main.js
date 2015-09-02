@@ -77,13 +77,18 @@
         });
         dialog.startup();
         
+      //highlight experiment
+
+
+
+      //end highlight experiment
         var highlightSymbol = new SimpleFillSymbol(
-          SimpleFillSymbol.STYLE_NULL, 
+          SimpleFillSymbol.STYLE_SOLID, 
           new SimpleLineSymbol(
             SimpleLineSymbol.STYLE_SOLID, 
             new Color([255,255,255]), 3
           ), 
-          // new Color([283,49,35,1])
+          new Color([283,49,35,1])
         );
         //close the dialog when the mouse leaves the highlight graphic
         map.on("load", function(){
