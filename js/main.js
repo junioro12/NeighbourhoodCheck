@@ -2,21 +2,41 @@
       var map, dialog;
 
       require([
-        "esri/map", "esri/layers/FeatureLayer", "esri/dijit/Search",
-        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", 
-        "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
-        "esri/Color", "dojo/number", "dojo/dom-style", 
-        "dijit/TooltipDialog", "dijit/popup", "esri/dijit/LocateButton", 
-        "dojo/parser","dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+
+        "esri/map", 
+        "esri/layers/FeatureLayer", 
+        "esri/dijit/Search",
+        "esri/symbols/SimpleFillSymbol", 
+        "esri/symbols/SimpleLineSymbol", 
+        "esri/renderers/SimpleRenderer", 
+        "esri/graphic", 
+        "esri/lang",
+        "esri/Color", 
+
+        "dojo/number", 
+        "dojo/dom",
+        "dojo/dom-style", 
+        "dijit/registry",
+        "dojo/parser",
+
+        "dijit/TooltipDialog", 
+        "dijit/popup", 
+        "esri/dijit/LocateButton", 
+        "dijit/layout/BorderContainer", 
+        "dijit/layout/ContentPane", 
+        "dojo/domReady!"
+
       ], function(
         Map, FeatureLayer, Search,
         SimpleFillSymbol, SimpleLineSymbol,
         SimpleRenderer, Graphic, esriLang,
-        Color, number, domStyle, 
+        Color, number, dom, domStyle, registry,
         TooltipDialog, dijitPopup, LocateButton, parser
       ) {
 
       parser.parse();
+
+      domStyle.set(registry.byId("mainWindow").domNode, "visibility", "visible");
 
         map = new Map("mapDiv", {
           basemap: "gray",
@@ -90,7 +110,7 @@
             SimpleLineSymbol.STYLE_SOLID, 
             new Color([255,255,255]), 3
           ), 
-          new Color([283,49,35,1])
+          new Color([283,49,35,0.5])
         );
         //close the dialog when the mouse leaves the highlight graphic
         map.on("load", function(){

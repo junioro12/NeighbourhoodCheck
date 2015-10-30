@@ -1,7 +1,6 @@
- html, body, #mapDiv {
-        padding:0;
-        margin:0;
+    html, body, #mainWindow {
         height:100%;
+        width: 100%;
       }
 	  #info {
         top: 2px;
@@ -19,6 +18,11 @@
         border-radius: 4px;
         background-color: #FFFFFF;
 	}
+
+    html, body {
+        padding:0;
+        margin:0;
+    }
 	  #search {
         display: block;
         position: absolute;
@@ -33,4 +37,7 @@
         left: 20px;
         z-index: 50;
     }
+
+    #mainWindow {
+        visibility: hidden;
 
