@@ -20,6 +20,21 @@
         margin: 0; 
         padding: 0;
       }
+          #search {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 25px;
+        left: 74px;
+      }
+
+      #LocateButton {
+        position: absolute;
+        top: 95px;
+        left: 25px;
+        z-index: 50;
+    }
+
       #mainWindow {
         visibility: hidden;
       }
@@ -27,13 +42,22 @@
 
     <script src="http://js.arcgis.com/3.14/"></script>
     <script>
-      var map, editToolbar;
+      var map, dialog;
 
       require([
         
         "esri/map", 
-        "esri/toolbars/edit",
         "esri/graphic",
+
+        "esri/layers/FeatureLayer", 
+        "esri/dijit/Search",
+        "esri/renderers/SimpleRenderer", 
+        "esri/lang",
+        "esri/Color", 
+        "dojo/number",
+        "dijit/TooltipDialog", 
+        "dijit/popup", 
+        "esri/dijit/LocateButton", 
 
         "esri/geometry/Point",
         "esri/geometry/Polyline",
@@ -50,16 +74,27 @@
         "dijit/registry", 
         "dijit/Menu",
 
-        "dijit/form/ToggleButton",
-        "dijit/form/DropDownButton",
-        "dijit/CheckedMenuItem",
         "dijit/layout/BorderContainer", 
         "dijit/layout/ContentPane", 
         "dojo/domReady!"
       ], function(
-        Map, Edit, Graphic,
-        Point, Polyline, Polygon,
-        SimpleLineSymbol, SimpleFillSymbol, TextSymbol,
+        Map, 
+        Graphic, 
+        FeatureLayer, 
+        Search, 
+        SimpleRenderer, 
+        esriLang, 
+        Color, 
+        number, 
+        TooltipDialog, 
+        dijitPopup, 
+        LocateButton,
+        Point, 
+        Polyline, 
+        Polygon,
+        SimpleLineSymbol, 
+        SimpleFillSymbol, 
+        TextSymbol,
         event, parser, dom, domStyle, registry, Menu
       ) {
         parser.parse();
@@ -190,11 +225,13 @@
   </head>
   
   <body class="nihilo">
-  <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:'false'">
+    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:'false'">
     <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="height:58px;text-align:left;font-weight:bold;font-size:14px;color:#400D12;">
       <span> United Way Ottawa -- Neighbourhood Check </span><br />
     </div>
-    <div id="mapDiv" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+    <div id="mapDiv" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"> 
+    <div id="search"></div>
+    <div id="LocateButton"></div>
     </div>
     </div>
   </body>
