@@ -39,14 +39,14 @@
 
       .header-text {
         font-size: 30px;
-        position: absolute;
+        position: relative;
         top: 20px;
-        left: 525px;
-        color: red;
+        /*left: 525px; */
+        color: rgb(245,60,60);
         font-family: Tahoma;
         font-weight: 200;
-
       }
+
 
       #mainWindow {
         visibility: hidden;
@@ -87,7 +87,7 @@
         "dijit/registry", 
         "dijit/Menu",
 
-        "dijit/layout/BorderContainer", 
+        "dijit/layout/LayoutContainer", 
         "dijit/layout/ContentPane", 
         "dojo/domReady!"
       ], function(
@@ -238,8 +238,8 @@
   </head>
   
   <body class="nihilo">
-    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters:'false'">
-    <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="height:58px;text-align:left;font-weight:bold;font-size:14px;color:#400D12;">
+    <div id="mainWindow" data-dojo-type="dijit/layout/LayoutContainer" data-dojo-props="design:'headline', gutters:'false'">
+    <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="height:70px; text-align:center; vertical-align: middle">
       <span class="header-text"> Together, we can change lives in Ottawa </span><br />
     </div>
     <div id="mapDiv" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"> 
