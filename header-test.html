@@ -121,11 +121,13 @@
       //slider: false,
         });
         
-    var NeighbourhoodsLayer = new FeatureLayer("http://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NBwithPC/FeatureServer/0", {
+    var NeighbourhoodsLayer = new FeatureLayer("http://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NeighbourhoodFile_FinalData/FeatureServer/0", {
             outFields: ["*"],
             styling: true
          });
-         
+    
+//old layer: http://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NBwithPC/FeatureServer/0
+
     var s = new Search({
             enableLabel: false,
             enableInfoWindow: false,
@@ -200,29 +202,38 @@
         var CityWideAverages = new Object();
 
             CityWideAverages.MedianIncome = 40000;
+            CityWideAverages.Population = 5000;
             CityWideAverages.SeniorsAlone = 0.15;
             CityWideAverages.UnpreparedChildren = 0.13;
-            CityWideAverages.Walkability = 4;
+            CityWideAverages.Walkability = 40;
 
         // create object for city averages ends
 
         //listen for when the onMouseOver event fires on the countiesGraphicsLayer
         //when fired, create a new graphic with the geometry from the event.graphic and add it to the maps graphics layer
         NeighbourhoodsLayer.on("mouse-over", function(evt){
-          var t = "<b>${Name}</b><hr><b>Population: </b>${Population}<br>"
-            + "<b>Seniors: </b>${F__Seniors:NumberFormat}<br>"
-            + "<b>Donors: </b>${Sum_No__of:NumberFormat}<br>"
-            + "<b>Median Income: </b>${Median_res:NumberFormat}<br>"
-      + "<b> There are ${Sum_No__of} donors in your neighbourhood, which is ${Sum_No__of:compareCityAverage} % compared to the city average.</b>";
+          var t = "<b>${Name}</b><hr><b>Population: </b>${Populati_1}<br>"
+            + "<b>Walkability: </b>${Walkabilit:NumberFormat}&nbsp&nbsp&nbsp ${Walkabilit:WalkabilityComparison}%<br>"
+            + "<b>Seniors: </b>${Sum_No__of:NumberFormat}<br>"
+            + "<b>Median Income: </b>${Median_res:NumberFormat}<br><br>"
+            + 
+      + "<b>There are ${Sum_No__of} donors in your neighbourhood, which is ${Sum_No__of:WalkabilityComparison} % compared to the city average.</b>";
   
     //Comparison function to populate tooltip
-    compareCityAverage = function(value) {
-      var cityAverage = CityWideAverages.Walkability //dummy value to be updated
-      var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.Sum_No__of : value;
+    WalkabilityComparison = function(value) {
+      var cityAverage = CityWideAverages.Walkability //take property from CityWideAverages object
+      var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.Walkabilit : value;
       return number.format((comparison - cityAverage)/cityAverage*100, { places: 2});
     };
   
-  
+        //Start compare function experiment
+
+
+
+
+        //end compare function experiment
+
+      
           var content = esriLang.substitute(evt.graphic.attributes,t);
           var highlightGraphic = new Graphic(evt.graphic.geometry,highlightSymbol);
           map.graphics.add(highlightGraphic);
