@@ -1,43 +1,40 @@
-    html, body, #mainWindow {
-        height:100%;
-        width: 100%;
+      html, body, #mainWindow {
+        font-family: sans-serif; 
+        height: 100%; 
+        width: 100%; 
       }
-	  #info {
-        top: 2px;
-        color: #444;
-        height: auto;
-        font-family: arial;
-        font-weight: bold;
-        left: 69px;
-        margin: 5px;
-        padding: 10px;
-        position: absolute;
-        width: 260px;
-        z-index: 40;
-        border: solid 1px #003300;
-        border-radius: 4px;
-        background-color: #FFFFFF;
-	}
 
-    html, body {
-        padding:0;
-        margin:0;
-    }
-	  #search {
+      html, body {
+        margin: 0; 
+        padding: 0;
+      }
+      
+      #search {
         display: block;
         position: absolute;
         z-index: 2;
-        top: 70px;
+        top: 25px;
         left: 74px;
       }
 
       #LocateButton {
         position: absolute;
         top: 95px;
-        left: 20px;
+        left: 25px;
         z-index: 50;
     }
 
-    #mainWindow {
-        visibility: hidden;
+      .header-text {
+        font-size: 30px;
+        position: relative;
+        top: 20px;
+        /*left: 525px; */
+        color: rgb(245,60,60);
+        font-family: Tahoma;
+        font-weight: 200;
+      }
 
+
+      #mainWindow {
+        visibility: hidden;
+      }
