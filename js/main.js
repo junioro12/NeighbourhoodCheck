@@ -121,11 +121,6 @@
         });
         dialog.startup();
         
-      //highlight experiment
-
-
-
-      //end highlight experiment
         var highlightSymbol = new SimpleFillSymbol(
           SimpleFillSymbol.STYLE_SOLID, 
           new SimpleLineSymbol(
