@@ -1,5 +1,5 @@
  
-     var map, dialog;
+var map, dialog;
 
       require([
         
@@ -60,7 +60,7 @@
 
         map = new Map("mapDiv", {
           basemap: "gray",
-          center: [-75.6919, 45.300],
+          center: [-75.7900, 45.300],
           zoom: 11,
       //slider: false,
         });
@@ -98,11 +98,12 @@
 
     //end experiment
 
-    var geoLocate = new LocateButton({
+    // add locator button that users can tap and the app zeros in on their IP location
+      var geoLocate = new LocateButton({
         map: map
-      }, "LocateButton");
+        }, "LocateButton");
       
-    //var sources = s.get("sources"); 
+    // introduce base symbology for neighbourhoods polygon
         var symbol = new SimpleFillSymbol(
           SimpleFillSymbol.STYLE_SOLID, 
           new SimpleLineSymbol(
@@ -111,17 +112,21 @@
           ),
           new Color([204,255,153,0.35])
         );
+
         NeighbourhoodsLayer.setRenderer(new SimpleRenderer(symbol));
         map.addLayer(NeighbourhoodsLayer);
         map.infoWindow.resize(245,125);
         
-        dialog = new TooltipDialog({
+    //begin tooltip code
+        var dialog = new TooltipDialog({
           id: "tooltipDialog",
-          style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"
+          style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100",
+          errorMessage: "Sorry! We're having problems loading your data. Try back later.",
         });
         dialog.startup();
         
-        var highlightSymbol = new SimpleFillSymbol(
+
+        var highlightSymbol = new SimpleFillSymbol( 
           SimpleFillSymbol.STYLE_SOLID, 
           new SimpleLineSymbol(
             SimpleLineSymbol.STYLE_SOLID, 
@@ -148,15 +153,14 @@
 
         // create object for city averages ends
 
-        //listen for when the onMouseOver event fires on the countiesGraphicsLayer
+        //listen for when the onMouseOver event fires on neighbourhoods layer
         //when fired, create a new graphic with the geometry from the event.graphic and add it to the maps graphics layer
         NeighbourhoodsLayer.on("mouse-over", function(evt){
           var t = "<b>${Name}</b><hr><b>Population: </b>${Populati_1}<br>"
-            + "<b>Walkability: </b>${Walkabilit:NumberFormat}&nbsp&nbsp&nbsp ${Walkabilit:WalkabilityComparison}%<br>"
+            + "<b>Walkability: </b>${Walkabilit:NumberFormat}&nbsp Compared: ${Walkabilit:WalkabilityComparison}%<br>"
             + "<b>Seniors: </b>${Sum_No__of:NumberFormat}<br>"
             + "<b>Median Income: </b>${Median_res:NumberFormat}<br><br>"
-            + 
-      + "<b>There are ${Sum_No__of} donors in your neighbourhood, which is ${Sum_No__of:WalkabilityComparison} % compared to the city average.</b>";
+      + "The walkability score is ${Walkabilit} in your neighbourhood, which is ${Walkabilit:WalkabilityComparison} % compared to the city average.";
   
     //Comparison function to populate tooltip
     WalkabilityComparison = function(value) {
