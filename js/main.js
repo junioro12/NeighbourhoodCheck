@@ -14,7 +14,7 @@ var map, dialog;
         "dojo/number",
         "dijit/TooltipDialog", 
         "dijit/popup", 
-        "esri/dijit/LocateButton", 
+        "esri/dijit/LocateButton",
 
         "esri/geometry/Point",
         "esri/geometry/Polyline",
@@ -120,7 +120,7 @@ var map, dialog;
     //begin tooltip code
         var dialog = new TooltipDialog({
           id: "tooltipDialog",
-          style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100",
+          style: "position: absolute; width: 250px; font: normal normal normal 10pt Arial;z-index:100",
           errorMessage: "Sorry! We're having problems loading your data. Try back later.",
         });
         dialog.startup();
@@ -141,34 +141,47 @@ var map, dialog;
           
         });
         
-        // create object for city averages starts
+        // create object for city averages 
 
         var CityWideAverages = new Object();
 
-            CityWideAverages.MedianIncome = 40000;
-            CityWideAverages.Population = 5000;
-            CityWideAverages.SeniorsAlone = 0.15;
-            CityWideAverages.UnpreparedChildren = 0.13;
-            CityWideAverages.Walkability = 40;
-
-        // create object for city averages ends
+            CityWideAverages.MedianIncome = 35555;
+            CityWideAverages.Population = 8560;
+            CityWideAverages.SeniorsAlone = 0.236;
+            CityWideAverages.ChildrenUnderSix = 0.214;
+            CityWideAverages.Walkability = 50;
 
         //listen for when the onMouseOver event fires on neighbourhoods layer
         //when fired, create a new graphic with the geometry from the event.graphic and add it to the maps graphics layer
         NeighbourhoodsLayer.on("mouse-over", function(evt){
-          var t = "<b>${Name}</b><hr><b>Population: </b>${Populati_1}<br>"
-            + "<b>Walkability: </b>${Walkabilit:NumberFormat}&nbsp Compared: ${Walkabilit:WalkabilityComparison}%<br>"
-            + "<b>Seniors: </b>${Sum_No__of:NumberFormat}<br>"
-            + "<b>Median Income: </b>${Median_res:NumberFormat}<br><br>"
-      + "The walkability score is ${Walkabilit} in your neighbourhood, which is ${Walkabilit:WalkabilityComparison} % compared to the city average.";
+          var t = "<b>${Name}</b><hr><b>Population: </b>${Populati_1} <br>"
+            + "<b>Median income: </b>$${MedianAfte:NumberFormat} <br>"
+            + "<b>Walkability score: </b> ${Walkabilit:NoZeroes} <br>"
+            + "<b>Seniors living alone: </b>${PercSenior:NumberFormat}% <br>"
+            + "<b>Children under 6: </b> ${PercChildr:NumberFormat}% <br><br>"
+            + "<b>Population comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
+            + "<b>Income comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
+            + "<b>Seniors comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
+            + "<b>Kids comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>";
+      //+ "The walkability score is ${Walkabilit:WalkabilityComparison} % compared to the city average.";
   
     //Comparison function to populate tooltip
-    WalkabilityComparison = function(value) {
-      var cityAverage = CityWideAverages.Walkability //take property from CityWideAverages object
-      var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.Walkabilit : value;
-      return number.format((comparison - cityAverage)/cityAverage*100, { places: 2});
-    };
-  
+      WalkabilityComparison = function(value) {
+          var cityAverage = CityWideAverages.Walkability //take property from CityWideAverages object
+          var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.Walkabilit : value; //get value from ArcGIS layer
+          return number.format((comparison - cityAverage)/cityAverage*100, { places: 2});
+          };
+
+    //Because we don't have data for all the neighbourhood walkscores, replace any zeroes with NA statement instead.
+      NoZeroes = function(value) {
+          var tocheck = (value.hasOwnProperty("attributes")) ? value.attributes.Walkabilit : value;
+          if (tocheck == 0) {
+            return "Not available."
+          } else {
+            return number.format(tocheck)
+          }
+      };
+
         //Start compare function experiment
 
 
