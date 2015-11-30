@@ -184,8 +184,19 @@ var map, dialog;
 
         //Start compare function experiment
 
+      ComparingAverages = function(value) {
+          var cityAverage = CityWideAverages.currentONSAttribute //take property from CityWideAverages object
+          var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.LayerFieldNames: value; //get value from ArcGIS layer
+          return number.format((comparison - cityAverage)/cityAverage*100, { places: 2});
+        };
 
+      var ONSAttributes = [ "Population", "MedianIncome", "Walkability", "SeniorsAlone", "ChildrenUnderSix"];
+      var LayerFieldNames = ["Populati_1", "MedianAfte", "Walkabilit", "PercSenior", "PercChildr"];
 
+        for (i = 0; i < ONSAttributes.length; i++) {
+          currentONSAttribute = ONSAttributes[i];
+          LayerFieldNames[i].ComparingAverages;
+        }
 
         //end compare function experiment
 
