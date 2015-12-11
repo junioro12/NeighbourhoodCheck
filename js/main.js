@@ -160,7 +160,7 @@ var map, dialog;
             + "<b>Seniors living alone: </b>${PercSenior:NumberFormat}% <br>"
             + "<b>Children under 6: </b> ${PercChildr:NumberFormat}% <br><br>"
             + "<b>Population comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
-            + "<b>Income comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
+            + "<b>Income comparison: </b> ${MedianAfte:ComparingAverages} %<br>"
             + "<b>Seniors comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>"
             + "<b>Kids comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>";
       //+ "The walkability score is ${Walkabilit:WalkabilityComparison} % compared to the city average.";
@@ -193,9 +193,11 @@ var map, dialog;
       var ONSAttributes = [ "Population", "MedianIncome", "Walkability", "SeniorsAlone", "ChildrenUnderSix"];
       var LayerFieldNames = ["Populati_1", "MedianAfte", "Walkabilit", "PercSenior", "PercChildr"];
 
-        for (i = 0; i < ONSAttributes.length; i++) {
+        for (i = 0; i < ONSAttributes.length; ++i) {
           currentONSAttribute = ONSAttributes[i];
+          window.alert(currentONSAttribute);
           LayerFieldNames[i].ComparingAverages;
+          
         }
 
         //end compare function experiment
