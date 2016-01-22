@@ -165,7 +165,7 @@ var map, dialog;
             + "<b>Kids comparison: </b> ${Walkabilit:WalkabilityComparison} %<br>";
       //+ "The walkability score is ${Walkabilit:WalkabilityComparison} % compared to the city average.";
   
-    //Comparison function to populate tooltip
+    //Comparison function to populate tooltip -- if you copy and repeat this code for each attribute it'll work
       WalkabilityComparison = function(value) {
           var cityAverage = CityWideAverages.Walkability //take property from CityWideAverages object
           var comparison = (value.hasOwnProperty("attributes")) ? value.attributes.Walkabilit : value; //get value from ArcGIS layer
@@ -202,7 +202,7 @@ var map, dialog;
 
         //end compare function experiment
 
-      
+      //create highlighted hover over graphic
           var content = esriLang.substitute(evt.graphic.attributes,t);
           var highlightGraphic = new Graphic(evt.graphic.geometry,highlightSymbol);
           map.graphics.add(highlightGraphic);
