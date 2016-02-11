@@ -195,7 +195,7 @@
 
         for (i = 0; i < ONSAttributes.length; ++i) {
           currentONSAttribute = ONSAttributes[i];
-          window.alert(currentONSAttribute);
+          //window.alert(currentONSAttribute);
           LayerFieldNames[i].ComparingAverages;
           
         }
