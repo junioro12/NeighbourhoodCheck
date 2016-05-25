@@ -65,7 +65,7 @@
       //slider: false,
         });
         
-    var NeighbourhoodsLayer = new FeatureLayer("http://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NeighbourhoodFile_FinalData/FeatureServer/0", {
+    var NeighbourhoodsLayer = new FeatureLayer("https://services1.arcgis.com/1EiQC2OVJfJVgJes/arcgis/rest/services/NeighbourhoodFile_FinalData/FeatureServer/0", {
             outFields: ["*"],
             styling: true
          });
